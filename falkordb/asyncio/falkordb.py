@@ -172,10 +172,13 @@ class FalkorDB:
         Returns:
             AsyncGraph: A new Graph instance associated with the selected graph.
         """
-        if not isinstance(graph_id, str) or graph_id == "":
+        if not isinstance(graph_id, str):
             raise TypeError(
                 f"Expected a string parameter, but received {type(graph_id)}."
             )
+
+        if not graph_id:
+            raise ValueError("Graph name cannot be empty.")
 
         return AsyncGraph(self, graph_id)
 
